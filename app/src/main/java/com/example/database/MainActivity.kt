@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Thread.sleep(5000)
         ManagerDB.getInstance(this).TABLE_SEXO.create(Sexo(0, "Femenino"))
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
