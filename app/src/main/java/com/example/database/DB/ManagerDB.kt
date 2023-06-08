@@ -7,7 +7,7 @@ import com.example.database.controller.UsuarioController
 
 class ManagerDB {
     companion object {
-        var DB_NAME = ""
+        var DB_NAME = "db"
         val DB_VERSION_NOW = 1
         private var connection : ManagerDB? = null
 
