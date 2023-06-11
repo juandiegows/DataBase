@@ -8,14 +8,12 @@ import com.example.database.models.Sexo
 
 class SexoController(context: Context) : DBConexion(context), CRUD<Sexo> {
 
-    override var TABLE: String = SexoController.TABLE
-    override var CREATE_TABLE: String = SexoController.CREATE_TABLE
 
     companion object {
         val TABLE = "sexo"
         val ID = "id"
         val NAME = "Name"
-        private val CREATE_TABLE = "CREATE TABLE $TABLE ($ID INTEGER PRIMARY KEY AUTOINCREMENT, $NAME TEXT UNIQUE)"
+        val CREATE_TABLE = "CREATE TABLE $TABLE ($ID INTEGER PRIMARY KEY AUTOINCREMENT, $NAME TEXT UNIQUE)"
     }
 
     override fun create(data: Sexo): Long {

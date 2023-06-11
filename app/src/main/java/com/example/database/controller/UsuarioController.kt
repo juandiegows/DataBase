@@ -8,8 +8,6 @@ import com.example.database.models.Usuario
 
 class UsuarioController(context: Context) : DBConexion(context), CRUD<Usuario> {
 
-    override var TABLE: String = UsuarioController.TABLE
-    override var CREATE_TABLE: String = UsuarioController.CREATE_TABLE
 
     companion object {
         val TABLE = "sexo"
@@ -17,7 +15,7 @@ class UsuarioController(context: Context) : DBConexion(context), CRUD<Usuario> {
         val NAME = "Name"
         val EMAIL = "email"
         val SEXO_ID = "sexo_id"
-        private val CREATE_TABLE =
+        val CREATE_TABLE =
             "CREATE TABLE $TABLE ($ID INTEGER PRIMARY KEY AUTOINCREMENT, $NAME" +
                     "$EMAIL TEXT UNIQUE, $SEXO_ID Int,  FOREIGN KEY($SEXO_ID) REFERENCES ${SexoController.TABLE}(${SexoController.ID}) )"
 
