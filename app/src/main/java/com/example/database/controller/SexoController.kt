@@ -12,11 +12,10 @@ class SexoController(context: Context) : DBConexion(context), CRUD<Sexo> {
     override var CREATE_TABLE: String = SexoController.CREATE_TABLE
 
     companion object {
-        const val TABLE = "sexo"
-        const val ID = "id"
-        const val NAME = "Name"
-        private const val CREATE_TABLE =
-            "CREATE TABLE $TABLE ($ID INTEGER PRIMARY KEY AUTOINCREMENT, $NAME TEXT UNIQUE)"
+        val TABLE = "sexo"
+        val ID = "id"
+        val NAME = "Name"
+        private val CREATE_TABLE = "CREATE TABLE $TABLE ($ID INTEGER PRIMARY KEY AUTOINCREMENT, $NAME TEXT UNIQUE)"
     }
 
     override fun create(data: Sexo): Long {

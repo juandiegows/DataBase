@@ -1,5 +1,6 @@
 package com.example.database
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -18,9 +19,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.spGenero.adapter = ArrayAdapter<Sexo>(this, android.R.layout.simple_spinner_dropdown_item, ManagerDB.getInstance().TABLE_SEXO.read().toList())
-        ManagerDB.getInstance().TABLE_SEXO.read().forEach {
-            Toast.makeText(this, it.name, Toast.LENGTH_SHORT).show()
+        Events()
+    }
+
+    private fun Events() {
+        binding.apply {
+            btnSexo.setOnClickListener {
+                startActivity(Intent(this@MainActivity, SexoActivity::class.java))
+            }
         }
     }
 }
