@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.database.DB.ManagerDB
 import com.example.database.adapter.SexoAdapter
 import com.example.database.databinding.ActivitySexoBinding
+import com.example.database.helper.Singleton
 
 class SexoActivity : AppCompatActivity() {
     lateinit var binding: ActivitySexoBinding
@@ -15,16 +16,35 @@ class SexoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySexoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.apply {
-            recySexo.layoutManager = LinearLayoutManager(this@SexoActivity)
-            recySexo.adapter =
-                SexoAdapter(ManagerDB.getInstance(this@SexoActivity).TABLE_SEXO.read())
-        }
+
+        LlenarRecySexo()
+
 
         binding.apply {
             btnSexo.setOnClickListener {
+                Singleton.sexo = null
                 startActivity(Intent(this@SexoActivity, CreateSexoActivity::class.java))
             }
         }
+
+    }
+
+    private fun LlenarRecySexo() {
+        binding.apply {
+            recySexo.layoutManager = LinearLayoutManager(this@SexoActivity)
+            recySexo.adapter =
+                SexoAdapter(ManagerDB.getInstance(this@SexoActivity).TABLE_SEXO.read()) { sexo ->
+                    Singleton.sexo = sexo
+                    startActivity(Intent(this@SexoActivity, CreateSexoActivity::class.java))
+
+                }
+        }
+
+    }
+
+    override fun onResume() {
+        LlenarRecySexo()
+        super.onResume()
+
     }
 }

@@ -9,7 +9,7 @@ import com.example.database.R
 import com.example.database.databinding.ItemSexoBinding
 import com.example.database.models.Sexo
 
-class SexoAdapter(var sexos: MutableList<Sexo>) : RecyclerView.Adapter<SexoAdapter.SexoHolder>() {
+class SexoAdapter(var sexos: MutableList<Sexo>, var editar : (sexo:Sexo)->Unit) : RecyclerView.Adapter<SexoAdapter.SexoHolder>() {
 
     inner class SexoHolder(var binding: ItemSexoBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -37,6 +37,9 @@ class SexoAdapter(var sexos: MutableList<Sexo>) : RecyclerView.Adapter<SexoAdapt
                             sexos.remove(sexo)
                             notifyItemRemoved(position)
                         }.create().show()
+                }
+                btnEdit.setOnClickListener {
+                    editar.invoke(sexo)
                 }
             }
         }

@@ -13,7 +13,8 @@ class SexoController(context: Context) : DBConexion(context), CRUD<Sexo> {
         val TABLE = "sexo"
         val ID = "id"
         val NAME = "Name"
-        val CREATE_TABLE = "CREATE TABLE $TABLE ($ID INTEGER PRIMARY KEY AUTOINCREMENT, $NAME TEXT UNIQUE)"
+        val CREATE_TABLE =
+            "CREATE TABLE $TABLE ($ID INTEGER PRIMARY KEY AUTOINCREMENT, $NAME TEXT UNIQUE)"
     }
 
     override fun create(data: Sexo): Long {
@@ -46,6 +47,7 @@ class SexoController(context: Context) : DBConexion(context), CRUD<Sexo> {
 
     override fun update(data: Sexo): Long {
         val values = ContentValues().apply {
+            put(ID, data.id)
             put(NAME, data.name)
         }
         val selection = "$ID LIKE ?"

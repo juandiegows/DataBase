@@ -19,7 +19,13 @@ fun TextInputEditText.Required(container: TextInputLayout) {
         }
     }
 }
-
+var TextInputEditText.Text :String
+    get() {
+        return this.text.toString()
+    }
+    set(value) {
+        this.setText(value)
+    }
 fun MutableList<View>.IsValid(): Boolean {
     var isvalid = true
     this.forEach {
