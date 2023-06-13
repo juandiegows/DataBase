@@ -19,24 +19,27 @@ fun TextInputEditText.Required(container: TextInputLayout) {
         }
     }
 }
-var TextInputEditText.Text :String
+
+var TextInputEditText.Text: String
     get() {
         return this.text.toString()
     }
     set(value) {
         this.setText(value)
     }
+
 fun MutableList<View>.IsValid(): Boolean {
     var isvalid = true
     this.forEach {
         if (it is TextInputEditText) {
             it.requestFocus()
             it.clearFocus()
+
+        }
+        if (it is TextInputLayout)
             if (!it.error.isNullOrEmpty()) {
                 isvalid = false
             }
-
-        }
     }
     return isvalid
 }
