@@ -6,7 +6,7 @@ import com.example.database.DB.CRUD
 import com.example.database.DB.DBConexion
 import com.example.database.models.Sexo
 
-class SexoController(context: Context) : DBConexion(context), CRUD<Sexo> {
+class SexoController(var connect: DBConexion) : CRUD<Sexo> {
 
 
     companion object {
@@ -21,12 +21,12 @@ class SexoController(context: Context) : DBConexion(context), CRUD<Sexo> {
         val values = ContentValues().apply {
             put(NAME, data.name)
         }
-        return this.writableDatabase.insert(TABLE, null, values)
+        return connect.writableDatabase.insert(TABLE, null, values)
     }
 
     override fun read(): MutableList<Sexo> {
         val sexos: MutableList<Sexo> = mutableListOf()
-        val cursor = this.readableDatabase.query(
+        val cursor = connect.readableDatabase.query(
             TABLE,
             arrayOf(ID, NAME),
             null,
@@ -52,12 +52,12 @@ class SexoController(context: Context) : DBConexion(context), CRUD<Sexo> {
         }
         val selection = "$ID LIKE ?"
         val selectionArgs = arrayOf(data.id.toString())
-        return this.writableDatabase.update(TABLE, values, selection, selectionArgs).toLong()
+        return connect.writableDatabase.update(TABLE, values, selection, selectionArgs).toLong()
     }
 
     override fun delete(data: Sexo): Long {
         val selection = "$ID LIKE ?"
         val selectionArgs = arrayOf(data.id.toString())
-        return this.writableDatabase.delete(TABLE, selection, selectionArgs).toLong()
+        return connect.writableDatabase.delete(TABLE, selection, selectionArgs).toLong()
     }
 }

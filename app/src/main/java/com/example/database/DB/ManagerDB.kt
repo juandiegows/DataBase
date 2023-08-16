@@ -26,7 +26,8 @@ class ManagerDB {
 
     var TABLE_SEXO: SexoController
     constructor(context: Context){
-        TABLE_USUARIO = UsuarioController(context)
-        TABLE_SEXO = SexoController(context)
+        var conection = DBConexion(context)
+        TABLE_USUARIO = UsuarioController(conection)
+        TABLE_SEXO = SexoController(conection)
     }
 }
